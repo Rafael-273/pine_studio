@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  design-hub-database: 
+    image: postgres:latest 
+    container_name: design-hub-database 
+    ports:
+      - "5432:${DB_PORT}"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    networks:
+      - design-hub-network
+
+  web-project:
+    hostname: "${HOSTNAME}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /usr/src/designhub
+    command: >
+      bash -c "
+        python manage.py runserver ${HOSTNAME}:${PORT}
+      "
+    volumes:
+      - ./designhub/:/usr/src/designhub
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PYTHONUNBUFFERED=True
+      - OAUTHLIB_INSECURE_TRANSPORT=False
+    env_file:
+      .env
+    depends_on:
+      - design-hub-database
+    networks:
+      - design-hub-network
+
+networks:
+    design-hub-network:
+        external: true

@@ -1,13 +1,13 @@
 FROM python:3.10.5
 
 EXPOSE 8000
-WORKDIR /designhub
+WORKDIR /pine_studio
 
-ADD requirements.txt /designhub
+ADD requirements.txt /pine_studio
     
 RUN pip install -r requirements.txt
 
-ADD ./designhub /designhub
+ADD ./pine_studio /pine_studio
 
 CMD gunicorn    --bind 0.0.0.0:8000      \
-                --reload designhub.wsgi:application
+                --reload pine_studio.wsgi:application

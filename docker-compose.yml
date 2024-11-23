@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  design-hub-database: 
+  pine-studio-database: 
     image: postgres:latest 
-    container_name: design-hub-database 
+    container_name: pine-studio-database 
     ports:
       - "5432:${DB_PORT}"
     environment:
@@ -12,20 +12,20 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     restart: always
     networks:
-      - design-hub-network
+      - pine-studio-network
 
   web-project:
     hostname: "${HOSTNAME}"
     build:
       context: .
       dockerfile: Dockerfile
-    working_dir: /usr/src/designhub
+    working_dir: /usr/src/pine_studio
     command: >
       bash -c "
         python manage.py runserver ${HOSTNAME}:${PORT}
       "
     volumes:
-      - ./designhub/:/usr/src/designhub
+      - ./pine_studio/:/usr/src/pine_studio
     ports:
       - "${PORT}:${PORT}"
     environment:
@@ -34,10 +34,10 @@ services:
     env_file:
       .env
     depends_on:
-      - design-hub-database
+      - pine-studio-database
     networks:
-      - design-hub-network
+      - pine-studio-network
 
 networks:
-    design-hub-network:
+    pine-studio-network:
         external: true

@@ -1,0 +1,20 @@
+PROJECT_NAME=pine-studio
+HOSTNAME=pine-studio.localhost
+PORT=8000
+
+#Database
+DB_NAME=pine_studio
+DB_USER=postgres
+DB_PASSWORD=123
+DB_HOST=pine-studio-database
+#Local
+DB_PORT=5432
+
+#Debug
+DEBUG=TRUE
+
+# #AWS
+# USE_S3=TRUE
+# AWS_ACCESS_KEY_ID=#
+# AWS_SECRET_ACCESS_KEY=#
+# AWS_STORAGE_BUCKET_NAME=#

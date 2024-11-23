@@ -4,21 +4,18 @@ body {
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-}
-
-@font-face {
-    font-family: 'San Francisco';
-    src: url("{% static 'fonts/SF-Pro.dmg' %}") format('dmg');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
 }
 
 :root {
-    --primary-color: #F7C730;
-    --secondary-color-light: #fffcf6;
-    --secondary-color-dark: #272727;
-    --accent-color: #f7b130;
+    --primary-color: #1B1C20;
+    --secondary-color-light: #FFFFFF;
+    --secondary-color-dark: #232428;
+    --accent-color: #C5AF8E;
+    --tertiary-color: #253D2E;
+    --tertiary-color-dark: #0F0F11;
 }
+
 
 ::-webkit-scrollbar {
     background: transparent;

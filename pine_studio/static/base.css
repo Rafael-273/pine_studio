@@ -7,6 +7,16 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+@font-face {
+    font-family: "Piepie W01 Regular";
+    src: url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.eot");
+    src: url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/f22b66fd8208f04c026f2ddd89468cb5.svg#Piepie W01 Regular")format("svg");
+}
+
 :root {
     --primary-color: #1B1C20;
     --secondary-color-light: #FFFFFF;

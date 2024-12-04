@@ -17,7 +17,7 @@
         <div class="hidden md:flex md:flex-grow md:items-center md:justify-between">
             <ul class="flex space-x-12 mx-auto">
                 <li><a href="{% url 'home' %}" class="font-semibold  text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Início</a></li>
-                <li><a href="" class="font-semibold  text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Nossos Packs</a></li>
+                <li><a href="{% url 'packs' %}" class="font-semibold  text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Nossos Packs</a></li>
                 <li><a href="" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Quem Sou Eu</a></li>
                 <li><a href="" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Contato</a></li>
             </ul>
@@ -30,7 +30,7 @@
 
     <ul id="mobile-menu" class="md:hidden flex flex-col items-center space-y-6 mt-2 py-4 absolute w-full top-20 hidden p-4" style="z-index: 1; background-color: var(--secondary-color-dark);">
         <li class="p-2"><a href="{% url 'home' %}" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Início</a></li>
-        <li class="p-2"><a href="" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Nossos Criativos</a></li>
+        <li class="p-2"><a href="{% url 'packs' %}" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Nossos Criativos</a></li>
         <li class="p-2"><a href="" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Nossos Packs</a></li>
         <li class="p-2"><a href="" class="text-[0.9rem] hover:text-black transition duration-500" style="color: var(--secondary-color-light);">Quem Sou Eu</a></li>
     </ul>

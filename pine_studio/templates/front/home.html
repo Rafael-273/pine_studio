@@ -24,26 +24,60 @@
             </div>
         </div>
     </div>
-    <div class="py-8 md:py-16">
+    <div class="py-6 md:py-16">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col justify-center shadow-lg h-72 rounded-lg p-6 hover:shadow-xl transition-shadow cursor-pointer" style="background-color: var(--secondary-color-dark);">
+                    <div class="flex justify-center mb-4">
+                        <ion-icon class="text-5xl text-white md hydrated" name="trophy-outline"></ion-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Alta Qualidade</h3>
+                    <p class="leading-relaxed text-gray-400">
+                        Receba artes e designs profissionais prontos para uso, com excelente resolução e criatividade.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center shadow-lg h-72 rounded-lg p-6 hover:shadow-xl transition-shadow cursor-pointer" style="background-color: var(--secondary-color-dark);">
+                    <div class="flex justify-center mb-4">
+                        <ion-icon class="text-5xl text-white md hydrated" name="timer-outline"></ion-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Praticidade</h3>
+                    <p class="leading-relaxed text-gray-400">
+                        Economize tempo com materiais prontos para uso imediato e adaptáveis a diversas ocasiões
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center shadow-lg h-72 rounded-lg p-6 hover:shadow-xl transition-shadow cursor-pointer" style="background-color: var(--secondary-color-dark);">
+                    <div class="flex justify-center mb-4">
+                        <ion-icon class="text-5xl text-white md hydrated" name="pricetags-outline"></ion-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Ótimo Custo-Benefício</h3>
+                    <p class="leading-relaxed text-gray-400">
+                        Invista em packs que oferecem soluções acessíveis e de alto impacto para suas necessidades.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="py-12 md:py-16 w-full" style="background-color: var(--tertiary-color-dark);">
         <div class="container mx-auto px-4 sm:px-8 flex flex-col gap-8 md:gap-12 items-center">
             <div class="flex flex-col gap-2 p-2 md:p-0 items-center">
                 <h2 class="hidden md:flex text-4xl tracking-normal lg:text-7xl text-center" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">
-                    Pack Gratuito
+                    Transforme seu Design
                 </h2>
-                <div class="md:hidden">
-                    <h2 class="text-6xl tracking-normal lg:text-7xl text-center" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">
-                        Packs
+                <div class="md:hidden px-2">
+                    <h2 class="text-4xl tracking-normal lg:text-7xl text-center" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">
+                        Transforme
                     </h2>
                     <h2 class="text-5xl tracking-normal lg:text-7xl text-center" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">
-                        Gratuitos
+                        seu Design
                     </h2>
                 </div>
                 <p class="text-center text-base md:text-xl px-4 md:px-0 mx-auto" style="color: var(--secondary-color-light)">
                     Artes criativas para sua <b>igreja, eventos e muito mais!</b>
                 </p>                
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for creative in featured_free_creatives %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-2">
+                {% for creative in featured_free_creatives|slice:":3" %}
                     <div class="rounded-lg cursor-pointer shadow-lg overflow-hidden md:hover:scale-105 md:transition-transform md:duration-300">
                         <img 
                             class="object-contain" 
@@ -51,57 +85,19 @@
                             alt="Arte Gratuita {{ creative.name }}">
                     </div>
                 {% endfor %}
-            </div>
+            </div>            
             <div class="rounded-full w-full md:w-96 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg" style="background-color: var(--secondary-color-light); color: var(--tertiary-color);">
                 Veja <b>agora!</b>
             </div>
         </div>
     </div>
-    <div class="py-8 md:py-16 w-full h-24" style="background-color: var(--tertiary-color-dark);">
+    <!-- <div class="py-8 md:py-16 w-full h-24" style="background-color: var(--tertiary-color-dark);">
         <div class="container mx-auto px-4 sm:px-8 flex flex-col gap-8 md:gap-12 items-center">
             <div class="rounded-full w-full md:w-96 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg" style="background-color: var(--secondary-color-light); color: var(--tertiary-color);">
                 Veja <b>agora!</b>
             </div>
         </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row items-center gap-4">
-        <!-- Imagem quadrada -->
-        <div class="w-full md:w-1/2 relative">
-            <div class="aspect-square">
-                <img 
-                    class="absolute inset-0 w-full h-full object-cover" 
-                    src="{% static 'assets/eu.jpg' %}" 
-                    alt="Rafael Pinheiro"
-                >
-            </div>
-        </div>
-        
-        <!-- Texto -->
-        <div class="w-1/2 flex flex-col gap-4 p-4 md:p-0 text-left">
-            <h2 class="md:text-4xl lg:text-5xl" 
-                style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">
-                Minha História
-            </h2>
-            <p class="text-sm md:text-base leading-relaxed"
-               style="color: var(--secondary-color-light); line-height: 1.75;">
-                Meu nome é Rafael Pinheiro, e minha jornada é guiada pela criatividade e pela paixão por transformar ideias em realidade. 
-                Comecei e continuo minha trajetória atuando na igreja, aprendendo a usar programas e técnicas para criar artes e vídeos 
-                que dão vida às mensagens e eventos. Foi nesse ambiente que desenvolvi meu olhar criativo e descobri o poder do design 
-                para conectar pessoas.
-            </p>
-            <p class="text-sm md:text-base leading-relaxed"
-               style="color: var(--secondary-color-light); line-height: 1.75;">
-                Hoje, trabalho como desenvolvedor, combinando minha bagagem artística com habilidades técnicas para criar soluções criativas 
-                e funcionais. Já tive a oportunidade de desenvolver designs para várias páginas, sempre buscando unir estética e usabilidade.
-            </p>
-            <p class="text-sm md:text-base leading-relaxed"
-               style="color: var(--secondary-color-light); line-height: 1.75;">
-                Minha missão é continuar inovando, seja por meio de um código bem estruturado ou de uma arte impactante. Acredito que cada projeto 
-                é uma oportunidade de aprendizado e de deixar uma marca positiva no mundo.
-            </p>
-        </div>
-    </div>
+    </div> -->
     
 </div>
 

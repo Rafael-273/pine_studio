@@ -22,18 +22,18 @@ Nossos Packs
     </h1>
 
     <div class="mb-2 flex md:hidden px-2 md:px-0 w-full">
-        <button class="w-full px-4 py-2 rounded transition duration-300" style="background-color: var(--secondary-color-dark);" onclick="toggleModal()">
+        <button class="w-full text-white px-4 py-2 rounded transition duration-300" style="background-color: var(--subcolor-dark);" onclick="toggleModal()">
             Filtros
         </button>
     </div>
 
     <div id="filterModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex justify-center items-center z-50 cursor-pointer" onclick="closeModal(event)">
-        <div class="filterModal p-6 rounded-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col items-center" style="background-color: white;">
-            <h2 class="text-3xl mb-4">Filtrar <b>Artigos</b></h2>
+        <div class="filterModal p-6 rounded-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col items-center" style="background-color: var(--primary-color);">
+            <h2 class="text-3xl text-white mb-2">Filtrar <b>Artigos</b></h2>
     
             <form method="get" action="{% url 'packs' %}" class="w-full">
                 <div class="mb-4 w-full">
-                    <label for="category" class="block text-gray-700 font-medium">Categoria</label>
+                    <label for="category" class="block text-white mb-2 font-medium">Categoria</label>
                     <select name="category" id="category" class="w-full text-gray-800 px-4 py-2 rounded-md focus:outline-none">
                         <option value="">Selecione uma Categoria</option>
                         {% for category in categories %}
@@ -47,7 +47,7 @@ Nossos Packs
                         Limpar Filtros
                     </button>
     
-                    <button type="submit" class="w-full sm:w-1/2 text-white px-4 py-2 rounded-md transition duration-300" style="background-color: var(--secondary-color-dark);">
+                    <button type="submit" class="w-full sm:w-1/2 text-white px-4 py-2 rounded-md transition duration-300" style="background-color: var(--subcolor-dark);">
                         Filtrar
                     </button>
                 </div>
@@ -70,7 +70,7 @@ Nossos Packs
                 Buscar
             </button>
 
-            <button type="button" class="text-white px-4 py-2 hidden md:flex rounded-md transition duration-300" style="background-color: var(--secondary-color-dark);" onclick="toggleModal()">
+            <button type="button" class="text-white px-4 py-2 hidden md:flex rounded-md transition duration-300" style="background-color: var(--subcolor-dark);" onclick="toggleModal()">
                 Filtros
             </button>
         </div>
@@ -78,19 +78,19 @@ Nossos Packs
 
     <div class="articles flex flex-col gap-6 w-full min-h-[18.9vh] p-2 md:p-0 justify-center">
         {% for pack in packs %}
-        <div class="pack p-4 rounded-lg shadow-md flex flex-col md:flex-row gap-4 h-auto md:h-[25rem] cursor-pointer" style="background-color: var(--secondary-color-dark);">
+        <div class="pack p-4 rounded-lg shadow-md flex flex-col md:flex-row gap-2 md:gap-4 h-auto md:h-[25rem] cursor-pointer" style="background-color: var(--secondary-color-dark);">
             <div class="cover-article w-full md:w-1/2 flex-shrink-0">
                 <img src="{{ pack.cover.url }}" alt="{{ pack.name }}" class="w-full h-[250px] md:h-full object-cover rounded-lg" />
             </div>
         
-            <div class="article-content flex flex-col justify-between w-full md:w-1/2 p-4 gap-4">
+            <div class="article-content flex flex-col justify-between w-full md:w-1/2 p-2 md:p-4 gap-4">
                 <div>
-                    <a href=""><h2 class="text-white text-2xl md:text-4xl"  style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h2></a>
-                    <p class="mt-2 text-white text-sm md:text-base">{{ pack.description|truncatewords:40 }}</p>
+                    <a href=""><h2 class="text-white text-center md:text-left text-3xl md:text-4xl"  style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h2></a>
+                    <p class="mt-2 text-white text-center md:text-left text-sm md:text-base">{{ pack.description|truncatewords:40 }}</p>
                 </div>
-                <a href="" class="mt-4 md:mt-0 w-full md:w-1/3 flex justify-center items-center gap-2 px-4 py-4 md:px-4 md:py-2 rounded-full bg-secondary text-white transition-colors duration-300 hover:bg-primary" style="background-color: var(--secondary-color-dark); color: white;">
-                    <h3 class="text-sm md:text-base">Leia Mais</h3>
-                    <ion-icon name="book-outline" class="text-lg md:text-xl"></ion-icon>
+                <a href="" class="mt-4 md:mt-0 w-full md:w-1/3 flex justify-center items-center gap-2 px-4 py-4 md:px-4 md:py-2 rounded-full bg-secondary text-white transition-colors duration-300 hover:bg-primary" style="background-color: var(--subcolor-dark); color: white;">
+                    <h3 class="text-sm md:text-base">Adquira Agora!</h3>
+                    <ion-icon name="arrow-redo" class="text-lg md:text-xl"></ion-icon>
                 </a>
             </div>
         </div>
@@ -114,5 +114,29 @@ Nossos Packs
     </div>
     {% endif %}
 </div>
+
+<script>
+    function toggleModal() {
+        const modal = document.getElementById('filterModal');
+        modal.classList.toggle('hidden');
+    }
+
+    function resetFilters() {
+        document.getElementById('category').value = '';
+        document.querySelector('form').submit();
+    }
+
+    function closeModal(event) {
+        const modalContent = event.target.closest('.filterModal');
+        if (!modalContent) {
+            toggleModal();
+        }
+    }
+
+    function toggleDropdown() {
+        const dropdown = document.getElementById("dropdown");
+        dropdown.classList.toggle("hidden");
+    }
+</script>
 
 {% endblock %}

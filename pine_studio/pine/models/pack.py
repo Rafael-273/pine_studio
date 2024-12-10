@@ -13,7 +13,8 @@ class Pack(BaseModel):
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     is_free = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, related_name='packs', blank=True)
-    sales_link = models.URLField(blank=True, null=True) 
+    sales_link = models.URLField(blank=True, null=True)
+    items = models.ManyToManyField('PackItem', related_name='packs', blank=True)
 
     def __str__(self):
         return self.name
@@ -38,3 +39,10 @@ class Pack(BaseModel):
                 output_size = (1200, 1200)
                 img.thumbnail(output_size)
                 img.save(self.cover.path)
+
+
+class PackItem(BaseModel):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name

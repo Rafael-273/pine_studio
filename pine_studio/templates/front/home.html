@@ -60,7 +60,7 @@
     </div>
 
     <div class="horizontal-ad w-full px-0 h-40 lg:h-96 overflow-hidden">
-        <a href="" target="_blank" class="ad-slide">
+        <a href="{% url 'packs' %}" class="ad-slide">
             <img src="{% static 'assets/banner.jpg' %}" class="w-full h-full object-cover">
         </a>
     </div>    
@@ -93,9 +93,11 @@
                     </div>
                 {% endfor %}
             </div>            
-            <div class="rounded-full w-full md:w-96 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg" style="background-color: var(--secondary-color-light); color: var(--tertiary-color);">
-                Veja <b>agora!</b>
-            </div>
+            <a href="{% url 'packs' %}">
+                <div class="rounded-full w-full md:w-96 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg" style="background-color: var(--secondary-color-light); color: var(--tertiary-color);">
+                    Veja <b>agora!</b>
+                </div>
+            </a>
         </div>
     </div>
 

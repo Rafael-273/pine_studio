@@ -11,18 +11,18 @@ Detalhes do Pack - {{ pack.name }}
 
 {% block content %}
 
-<div class="flex-grow content container mx-auto mb-8 mt-28 flex flex-col justify-center items-center">
+<div class="flex-grow content container mx-auto mb-8 mt-28 flex flex-col justify-center items-center px-4">
     <div class="flex flex-col mb-12 gap-4">
-        <div class="flex">
-            <div class="flex-shrink-0 w-1/2 mr-6">
+        <div class="flex flex-wrap md:flex-nowrap">
+            <div class="flex-shrink-0 w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
                 <div class="relative w-full pt-[56.25%] rounded-md shadow-md overflow-hidden">
                     <img src="{{ pack.cover.url }}" alt="{{ pack.name }}" class="absolute inset-0 w-full h-full object-cover" />
                 </div>
-            </div>           
-            <div class="flex flex-col gap-4 w-1/2 justify-center p-4">
-                <div class="flex justify-between items-end">
-                    <h1 class="text-5xl text-gray-900" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h1>
-                    <h1 class="text-2xl text-gray-900 mr-4" 
+            </div>
+            <div class="flex flex-col gap-4 w-full md:w-1/2 justify-center p-4">
+                <div class="flex flex-col gap-2 md:gap-0 md:flex-row justify-between items-center md:items-end">
+                    <h1 class="text-5xl text-center text-gray-900" style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h1>
+                    <h1 class="text-xl md:text-2xl text-gray-900 mr-4" 
                         style="color: var(--tertiary-color-light); font-family: 'Montserrat', sans-serif;">
                         {% if pack.price %}
                             R$ <b>{{ pack.price }}</b>
@@ -31,10 +31,10 @@ Detalhes do Pack - {{ pack.name }}
                         {% endif %}
                     </h1>
                 </div>
-                <p class="text-lg text-white">{{ pack.description }}</p>
-                <div class="flex flex-col">
-                    <h1 class="text-xl text-gray-900" style="color: var(--tertiary-color-light); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Itens <b>Inclusos:</b></h1>
-                    <div class="flex gap-4">
+                <p class="text-base md:text-lg text-white">{{ pack.description }}</p>
+                <div class="flex flex-col gap-2 md:gap-0">
+                    <h1 class="text-lg md:text-xl text-gray-900" style="color: var(--tertiary-color-light); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Itens <b>Inclusos:</b></h1>
+                    <div class="gap-4 hidden md:flex">
                         {% for item in pack.items.all %}
                             <div class="text-lg border-b-2 border-dashed" 
                             style="color: var(--secondary-color-light-opacity); border-color: var(--secondary-color-light-opacity) !important; 
@@ -49,18 +49,33 @@ Detalhes do Pack - {{ pack.name }}
                             </div>
                         {% endfor %}
                     </div>
+                    <div class="md:hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-auto gap-4">
+                        {% for item in pack.items.all %}
+                            <div class="text-lg border-b-2 border-dashed pb-2"
+                                 style="color: var(--secondary-color-light-opacity); border-color: var(--secondary-color-light-opacity) !important; 
+                                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                                {{ item.name }}
+                            </div>
+                        {% empty %}
+                            <div class="text-lg border-b-2 border-dashed pb-2" 
+                                 style="color: var(--secondary-color-light-opacity); border-color: var(--secondary-color-light-opacity) !important; 
+                                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                                Nenhum item vinculado.
+                            </div>
+                        {% endfor %}
+                    </div>                    
                 </div>
             </div>
         </div>
         <div class="rounded-lg text-center cursor-pointer py-4" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">Adquira <b>agora!</b></div>
     </div>
 
-    <div id="image-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75">
+    <div id="image-modal" class="cursor-pointer fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75">
         <div class="relative max-w-4xl w-full">
-            <button id="close-modal" class="absolute top-2 right-2 text-white text-2xl">&times;</button>
-            <img id="modal-image" src="" alt="" class="w-full h-auto rounded-md shadow-lg p-24">
+            <button id="close-modal" class="absolute top-2 right-2 text-white text-2xl"></button>
+            <img id="modal-image" src="" alt="" class="w-full h-auto rounded-md shadow-lg p-8 md:p-24">
         </div>
-    </div> 
+    </div>
 
     <div class="flex flex-col justify-center items-center gap-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -72,6 +87,7 @@ Detalhes do Pack - {{ pack.name }}
         </div>
     </div>
 </div>
+
 
 <script>
     $(document).ready(function () {

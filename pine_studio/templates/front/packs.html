@@ -8,12 +8,6 @@ Nossos Packs
 
 {% endblock %}
 
-{% block head %}
-
-    <link rel="stylesheet" href="{% static 'front/pack.css' %}">
-
-{% endblock %}
-
 {% block content %}
 
 <div class="flex-grow content container mx-auto mb-8 mt-28 flex flex-col justify-center items-center">
@@ -89,7 +83,7 @@ Nossos Packs
                         <a href="{% url 'pack_detail' slug=pack.slug %}">
                             <h2 class="text-white text-center md:text-left text-3xl md:text-4xl"  style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h2>
                         </a>
-                        <h1 class="text-xl md:text-2xl text-gray-900 mr-8" 
+                        <h1 class="text-xl md:text-2xl text-gray-900 md:mr-10" 
                             style="color: var(--tertiary-color-light); font-family: 'Montserrat', sans-serif;">
                             {% if pack.price %}
                                 R$ <b>{{ pack.price }}</b>

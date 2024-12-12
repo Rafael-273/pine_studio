@@ -85,9 +85,19 @@ Nossos Packs
         
             <div class="article-content flex flex-col justify-between w-full md:w-1/2 p-2 md:p-4 gap-4">
                 <div>
-                    <a href="{% url 'pack_detail' slug=pack.slug %}">
-                        <h2 class="text-white text-center md:text-left text-3xl md:text-4xl"  style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h2>
-                    </a>
+                    <div class="flex flex-col gap-2 md:gap-0 md:flex-row justify-between items-center md:items-end">
+                        <a href="{% url 'pack_detail' slug=pack.slug %}">
+                            <h2 class="text-white text-center md:text-left text-3xl md:text-4xl"  style="color: var(--secondary-color-light); font-family: 'Piepie W01 Regular', sans-serif;">{{ pack.name }}</h2>
+                        </a>
+                        <h1 class="text-xl md:text-2xl text-gray-900 mr-8" 
+                            style="color: var(--tertiary-color-light); font-family: 'Montserrat', sans-serif;">
+                            {% if pack.price %}
+                                R$ <b>{{ pack.price }}</b>
+                            {% else %}
+                                Grátis
+                            {% endif %}
+                        </h1>
+                    </div>
                     <p class="mt-2 text-white text-center md:text-left text-sm md:text-base">{{ pack.description|truncatewords:40 }}</p>
                 </div>
                 <a href="{% url 'pack_detail' slug=pack.slug %}" class="mt-4 md:mt-0 w-full md:w-1/3 flex justify-center items-center gap-2 px-4 py-4 md:px-4 md:py-2 rounded-full bg-secondary text-white transition-colors duration-300 hover:bg-primary" style="background-color: var(--subcolor-dark); color: white;">

@@ -12,6 +12,20 @@ Detalhes do Pack - {{ pack.name }}
 {% block content %}
 
 <div class="flex-grow content container mx-auto mb-8 mt-28 flex flex-col justify-center items-center px-4">
+    <div class="messages-container">
+        {% if messages %}
+            <div class="flex justify-center items-center mb-6 w-full">
+                {% for message in messages %}
+                    <div class="message text-center p-4 mb-4 w-full max-w-sm text-white rounded-md
+                        {% if message.tags == 'error' %} bg-red-500 {% endif %}"
+                        style="{% if message.tags == 'success' %} background-color: var(--subcolor-dark);{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
     <div class="flex flex-col mb-12 gap-4">
         <div class="flex flex-wrap md:flex-nowrap">
             <div class="flex-shrink-0 w-full md:w-1/2 mb-4 md:mb-0 md:mr-6">
@@ -67,13 +81,60 @@ Detalhes do Pack - {{ pack.name }}
                 </div>
             </div>
         </div>
-        <div class="rounded-lg text-center cursor-pointer py-4" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">Adquira <b>agora!</b></div>
+        {% if pack.is_free %}
+            <div 
+                class="rounded-lg text-center cursor-pointer py-4 open-modal" 
+                style="background-color: var(--tertiary-color); color: var(--secondary-color-light);"
+                data-modal-id="freePackModal">
+                Obter <b>Gratuitamente</b>
+            </div>
+        {% else %}
+            <a href="{{ pack.sales_link }}">
+                <div 
+                    class="rounded-lg text-center cursor-pointer py-4" 
+                    style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">
+                    Adquira <b>agora!</b>
+                </div>
+            </a>
+        {% endif %}
     </div>
 
-    <div id="image-modal" class="cursor-pointer fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75">
-        <div class="relative max-w-4xl w-full">
-            <button id="close-modal" class="absolute top-2 right-2 text-white text-2xl"></button>
-            <img id="modal-image" src="" alt="" class="w-full h-auto rounded-md shadow-lg p-8 md:p-24">
+    <div id="freePackModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 cursor-pointer">
+        <div class="bg-white flex flex-col gap-8 p-8 rounded-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col items-center" style="background-color: var(--primary-color);">
+            <h2 class="text-3xl text-white text-center">Obtenha este <b>Pack Gratuitamente</b></h2>
+            
+            <form method="POST" class="flex flex-col gap-2">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                
+                <div class="flex flex-col">
+                    <label for="id_name" class="text-white mb-2">Nome completo</label>
+                    {{ form.name }}
+                </div>
+            
+                <div class="flex flex-col">
+                    <label for="id_email" class="text-white mb-2">E-mail</label>
+                    {{ form.email }}
+                </div>
+            
+                <div class="flex flex-col">
+                    <label for="id_found_us_through" class="text-white mb-2">Por onde nos encontrou?</label>
+                    {{ form.found_us_through }}
+                </div>
+
+                <div hidden>
+                    {{ form.pack }}
+                </div>
+            
+                <div class="flex gap-2 items-center justify-center">
+                    <label for="id_consent_for_marketing" class="text-white">Concordo em receber materiais de marketing</label>
+                    {{ form.consent_for_marketing }}
+                </div>
+            
+                <button type="submit" class="w-full text-white px-4 py-2 rounded-md transition duration-300" style="background-color: var(--subcolor-dark);">
+                    Enviar
+                </button>
+            </form>            
         </div>
     </div>
 
@@ -87,7 +148,6 @@ Detalhes do Pack - {{ pack.name }}
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {
@@ -112,6 +172,25 @@ Detalhes do Pack - {{ pack.name }}
                 $("#image-modal").addClass("hidden");
             }
         });
+
+        $('.open-modal').on('click', function () {
+            const modalId = $(this).data('modal-id');
+            $('#' + modalId).removeClass('hidden');
+        });
+
+        $('.close-modal').on('click', function () {
+            $(this).closest('.fixed').addClass('hidden');
+        });
+
+        $('#freePackModal').on('click', function (e) {
+            if ($(e.target).is('#freePackModal')) {
+                $(this).addClass('hidden');
+            }
+        });
+
+        setTimeout(function () {
+            $('.message').fadeOut(500);
+        }, 5000)
     });
 </script>
 

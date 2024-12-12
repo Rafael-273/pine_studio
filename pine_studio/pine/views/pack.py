@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .email_management import EmailManagementView
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 from ..models import Pack
 from ..forms.contact import DownloadEmailForm
 
@@ -14,8 +15,19 @@ class PackListView(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Pack.objects.all().order_by('name')
-    
+        query = self.request.GET.get('q', '')
+        queryset = Pack.objects.all()
+
+        is_free = self.request.GET.get('is_free')
+        if is_free == "true":
+            queryset = queryset.filter(is_free=True)
+        elif is_free == "false":
+            queryset = queryset.filter(is_free=False)
+
+        if query:
+            queryset = queryset.filter(Q(name__icontains=query) | Q(description__icontains=query))
+
+        return queryset
 
 class PackDetailView(DetailView):
     model = Pack

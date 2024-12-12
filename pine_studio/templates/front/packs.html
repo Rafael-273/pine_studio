@@ -23,16 +23,15 @@ Nossos Packs
 
     <div id="filterModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex justify-center items-center z-50 cursor-pointer" onclick="closeModal(event)">
         <div class="filterModal p-6 rounded-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 flex flex-col items-center" style="background-color: var(--primary-color);">
-            <h2 class="text-3xl text-white mb-2">Filtrar <b>Artigos</b></h2>
+            <h2 class="text-3xl text-white mb-2">Filtrar <b>Packs</b></h2>
     
             <form method="get" action="{% url 'packs' %}" class="w-full">
                 <div class="mb-4 w-full">
                     <label for="category" class="block text-white mb-2 font-medium">Categoria</label>
-                    <select name="category" id="category" class="w-full text-gray-800 px-4 py-2 rounded-md focus:outline-none">
-                        <option value="">Selecione uma Categoria</option>
-                        {% for category in categories %}
-                            <option value="{{ category.slug }}" {% if selected_category == category.slug %}selected{% endif %}>{{ category.name }}</option>
-                        {% endfor %}
+                    <select name="is_free" id="is_free" class="w-full text-gray-800 px-4 py-2 rounded-md focus:outline-none">
+                        <option value="">Selecione</option>
+                        <option value="true" {% if request.GET.is_free == "true" %}selected{% endif %}>Gratuito</option>
+                        <option value="false" {% if request.GET.is_free == "false" %}selected{% endif %}>Pago</option>
                     </select>
                 </div>
     
@@ -56,7 +55,7 @@ Nossos Packs
                 name="q" 
                 placeholder="Buscar packs" 
                 value="{{ query }}" 
-                class="p-2 px-4 border border-gray-300 rounded-md w-full"
+                class="p-2 px-4 border border-gray-300 rounded-md w-full text-white"
                 style="background-color: var(--secondary-color-dark); border: none;"
             >
 

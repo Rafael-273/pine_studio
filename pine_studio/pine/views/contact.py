@@ -11,7 +11,6 @@ class ContactView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contact_email'] = 'contatoondecomeremmarica@gmail.com'
         context['form'] = ContactForm()
         return context
     
@@ -25,13 +24,13 @@ class ContactView(TemplateView):
             context = {
                 'name': contact_message.name,
                 'email': contact_message.email,
-                'number': contact_message.phone,
+                'phone': contact_message.phone,
                 'subject': contact_message.subject,
                 'message': contact_message.message
             }
 
             template_name = 'email/contact_email.html'
-            to_emails = ['contatoondecomeremmarica@gmail.com', 'ondecomeremmarica@gmail.com']
+            to_emails = ['contatopinestudio@gmail.com']
             email_sent = EmailManagementView.send_email(subject, template_name, context, to_emails)
 
             if email_sent:

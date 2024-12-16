@@ -75,7 +75,7 @@ class PackDetailView(DetailView):
                 'pack_link': download_email['pack'].sales_link
             }
 
-            template_name = 'email/contact_email.html'
+            template_name = 'email/free_pack_email.html'
             to_emails = [download_email['email']]
             email_sent = EmailManagementView.send_email(subject, template_name, context, to_emails)
 

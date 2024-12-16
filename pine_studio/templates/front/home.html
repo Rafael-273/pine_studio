@@ -19,9 +19,11 @@
     <div class="first-container flex flex-col gap-6 justify-center items-center w-full min-h-[100vh]" style="background-image: url({% static "assets/container_background.jpg" %});">
         <div class="flex flex-col gap-4  mt-24 items-center fade-in-up">
             <img class="w-[18rem] md:w-[20rem] lg:w-[32rem] h-auto" src="{% static 'assets/pine.png' %}" alt="logo">
-            <div class="rounded-full md:w-2/3 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg hover:scale-105 transition-transform duration-300" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">
-                Veja <b>nossos Criativos!</b>
-            </div>
+            <a href="{% url 'packs' %}" class="w-full flex justify-center">
+                <div class="rounded-full md:w-2/3 cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg hover:scale-105 transition-transform duration-300" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">
+                    Adquira <b>nossos Packs!</b>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -63,7 +65,7 @@
         <a href="{% url 'packs' %}" class="ad-slide">
             <img src="{% static 'assets/banner.jpg' %}" class="w-full h-full object-cover">
         </a>
-    </div>    
+    </div>
 
     <div class="py-6 md:py-16 w-full" style="background-color: var(--primary-color);">
         <div class="container mx-auto px-4 sm:px-8 flex flex-col gap-8 md:gap-12 items-center">

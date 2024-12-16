@@ -12,7 +12,7 @@ Detalhes do Pack - {{ pack.name }}
         {% if messages %}
             <div class="flex justify-center items-center mb-6 w-full">
                 {% for message in messages %}
-                    <div class="message text-center p-4 mb-4 w-full max-w-sm text-white rounded-md
+                    <div class="message text-center p-4 mb-4 w-full text-white rounded-md
                         {% if message.tags == 'error' %} bg-red-500 {% endif %}"
                         style="{% if message.tags == 'success' %} background-color: var(--subcolor-dark);{% endif %}">
                         {{ message }}

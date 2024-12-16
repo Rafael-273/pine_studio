@@ -36,7 +36,29 @@ class PackDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pack = self.object
+
+        context['creatives_1080x1080'] = pack.creatives.filter(dimensions="1080x1080").exclude(carousels__isnull=False)
+        context['creatives_1080x1350'] = pack.creatives.filter(dimensions="1080x1350").exclude(carousels__isnull=False)
+        context['creatives_1080x1920'] = pack.creatives.filter(dimensions="1080X1920").exclude(carousels__isnull=False)
+        
+        creatives_with_carousels_square = {}
+        creatives_with_carousels_vertical = {}
+
+        creatives = pack.creatives.filter(carousels__isnull=False)
+        for creative in creatives:
+            carousels = list(creative.carousels.all())
+            
+            if creative.dimensions == '1080x1080':
+                creatives_with_carousels_square[creative] = carousels
+            elif creative.dimensions == '1080x1350':
+                creatives_with_carousels_vertical[creative] = carousels
+
+        context['creatives_carousels_square'] = creatives_with_carousels_square
+        context['creatives_carousels_vertical'] = creatives_with_carousels_vertical
+        
         context['form'] = DownloadEmailForm(pack=self.object)
+        
         return context
 
     def post(self, request, *args, **kwargs):

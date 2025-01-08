@@ -28,8 +28,11 @@ jobs:
         python manage.py collectstatic --noinput
       working-directory: pine_studio
 
-    - name: Restart application
+    - name: Deploy to server
       run: |
-        # Comando para reiniciar a aplicação, por exemplo, se estiver usando Gunicorn ou Docker
-        # Exemplo de comando no servidor de produção
-        sudo systemctl restart gunicorn
+        docker build -t pine_studio:latest .
+
+        docker run -d --name pine_studio \
+          -p 8000:8000 \
+          pine_studio:latest
+        EOF

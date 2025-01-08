@@ -20,7 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r pine_studio/requirements.txt  # Ajuste para o caminho correto
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
     - name: Run migrations
       run: |

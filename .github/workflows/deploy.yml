@@ -35,4 +35,3 @@ jobs:
         docker run -d --name pine_studio \
           -p 8000:8000 \
           pine_studio:latest
-        EOF

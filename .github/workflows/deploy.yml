@@ -33,4 +33,4 @@ jobs:
 
     - name: Deploy with Gunicorn
       run: |
-        nohup gunicorn --workers 3 --bind 0.0.0.0:8000 pine.wsgi:application &
+        nohup gunicorn --workers 3 --bind 0.0.0.0:8000 pine_studio.wsgi:application &

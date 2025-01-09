@@ -10,7 +10,7 @@
             <img class="flex md:hidden w-24 md:w-8 mx-auto md:mx-0" src="{% static 'assets/logo.png' %}" alt="logo">
         </a>
 
-        <a href="https://www.instagram.com/ondecomeremmarica/" target="_blank" class="md:hidden text-3xl mr-2 flex justify-center">
+        <a href="https://www.instagram.com/pine.creativestudio/" target="_blank" class="md:hidden text-3xl mr-2 flex justify-center">
             <ion-icon name="logo-instagram" style="color: var(--secondary-color-light);"></ion-icon>
         </a>
 
@@ -23,9 +23,11 @@
             </ul>
         </div>
 
-        <div class="hidden md:flex space-x-4">
-            <div class=" rounded-full cursor-pointer px-6 py-2" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">Packs <b>Gratuitos</b></div>
-        </div>
+        <a href="{% url 'packs' %}">
+            <div class="hidden md:flex space-x-4">
+                <div class=" rounded-full cursor-pointer px-6 py-2" style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">Packs <b>Gratuitos</b></div>
+            </div>
+        </a>
     </nav>
 
     <ul id="mobile-menu" class="md:hidden flex flex-col items-center space-y-6 mt-2 py-4 absolute w-full top-20 hidden p-4" style="z-index: 1; background-color: var(--tertiary-color-dark);">

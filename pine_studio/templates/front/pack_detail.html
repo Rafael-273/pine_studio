@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Detalhes do Pack - {{ pack.name }}
+{{ pack.name }}
 {% endblock %}
 
 {% block content %}
@@ -85,7 +85,7 @@ Detalhes do Pack - {{ pack.name }}
                 Obter <b>Gratuitamente</b>
             </div>
         {% else %}
-            <a href="{{ pack.sales_link }}">
+            <a href="{{ pack.sales_link }}" target="_blank">
                 <div 
                     class="rounded-lg text-center cursor-pointer py-4" 
                     style="background-color: var(--tertiary-color); color: var(--secondary-color-light);">

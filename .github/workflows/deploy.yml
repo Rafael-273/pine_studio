@@ -23,10 +23,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Deploy to server
+    - name: Collect static files
       run: |
-        docker build -t pine_studio:latest .
-
-        docker run -d --name pine_studio \
-          -p 8000:8000 \
-          pine_studio:latest
+        python manage.py collectstatic --noinput
+      working-directory: pine_studio

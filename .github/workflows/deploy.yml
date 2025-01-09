@@ -30,6 +30,8 @@ jobs:
 
     - name: Deploy to server
       run: |
+        ssh -p 28166 -o StrictHostKeyChecking=no application@ag-br1-30.conteige.cloud
+
         docker build -t pine_studio:latest .
 
         docker run -d --name pine_studio \

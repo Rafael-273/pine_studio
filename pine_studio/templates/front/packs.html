@@ -73,7 +73,9 @@ Nossos Packs
         {% for pack in packs %}
         <div class="pack p-4 rounded-lg shadow-md flex flex-col md:flex-row gap-2 md:gap-4 h-auto md:h-[25rem] cursor-pointer" style="background-color: var(--secondary-color-dark);">
             <div class="cover-article w-full md:w-1/2 flex-shrink-0">
-                <img src="{{ pack.cover.url }}" alt="{{ pack.name }}" class="w-full h-[250px] md:h-full object-cover rounded-lg" />
+                <a href="{% url 'pack_detail' slug=pack.slug %}">
+                    <img src="{{ pack.cover.url }}" alt="{{ pack.name }}" class="w-full h-[250px] md:h-full object-cover rounded-lg" />
+                </a>
             </div>
         
             <div class="article-content flex flex-col justify-between w-full md:w-1/2 p-2 md:p-4 gap-4">

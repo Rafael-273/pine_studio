@@ -27,4 +27,4 @@ class Creative(BaseModel):
     carousels = models.ManyToManyField(Carousel, related_name='creatives', blank=True)
 
     def __str__(self):
-        return self.pack
+        return self.pack.name

@@ -7,7 +7,7 @@ class Carousel(BaseModel):
     image = models.ImageField(upload_to='creatives/carousel')
 
     def __str__(self):
-        return self.image
+        return self.image.name
 
 class Creative(BaseModel):
     DIMENSIONS_CHOICES = [
@@ -27,4 +27,4 @@ class Creative(BaseModel):
     carousels = models.ManyToManyField(Carousel, related_name='creatives', blank=True)
 
     def __str__(self):
-        return self.pack.name
+        return f'{self.pack.name}_{self.image.name}'

@@ -38,9 +38,9 @@ class PackDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         pack = self.object
 
-        context['creatives_1080x1080'] = pack.creatives.filter(dimensions="1080x1080").exclude(carousels__isnull=False)
-        context['creatives_1080x1350'] = pack.creatives.filter(dimensions="1080x1350").exclude(carousels__isnull=False)
-        context['creatives_1080x1920'] = pack.creatives.filter(dimensions="1080X1920").exclude(carousels__isnull=False)
+        context['creatives_1080x1080'] = pack.creatives.filter(dimensions="1080x1080").exclude(carousels__isnull=False).order_by('created_at')
+        context['creatives_1080x1350'] = pack.creatives.filter(dimensions="1080x1350").exclude(carousels__isnull=False).order_by('created_at')
+        context['creatives_1080x1920'] = pack.creatives.filter(dimensions="1080X1920").exclude(carousels__isnull=False).order_by('created_at')
         
         creatives_with_carousels_square = {}
         creatives_with_carousels_vertical = {}

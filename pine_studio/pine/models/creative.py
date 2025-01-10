@@ -4,11 +4,10 @@ from ..models.pack import Pack
 
 
 class Carousel(BaseModel):
-    name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='creatives/carousel')
 
     def __str__(self):
-        return self.name
+        return self.image
 
 class Creative(BaseModel):
     DIMENSIONS_CHOICES = [
@@ -17,7 +16,6 @@ class Creative(BaseModel):
         ('1080x1080', '1080 x 1080'),
     ]
 
-    name = models.CharField(max_length=255)
     pack = models.ForeignKey(Pack, on_delete=models.CASCADE, related_name='creatives')
     is_featured = models.BooleanField(default=False)
     dimensions = models.CharField(
@@ -29,4 +27,4 @@ class Creative(BaseModel):
     carousels = models.ManyToManyField(Carousel, related_name='creatives', blank=True)
 
     def __str__(self):
-        return self.name
+        return self.pack

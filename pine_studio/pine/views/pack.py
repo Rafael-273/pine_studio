@@ -16,7 +16,7 @@ class PackListView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q', '')
-        queryset = Pack.objects.all()
+        queryset = Pack.objects.all().order_by('-update_at')
 
         is_free = self.request.GET.get('is_free')
         if is_free == "true":
@@ -28,6 +28,7 @@ class PackListView(ListView):
             queryset = queryset.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
         return queryset
+
 
 class PackDetailView(DetailView):
     model = Pack

@@ -33,13 +33,6 @@ class Pack(BaseModel):
 
         super().save(*args, **kwargs)
 
-        if self.cover:
-            img = Image.open(self.cover.path)
-            if img.height > 1200 or img.width > 1200:
-                output_size = (1200, 1200)
-                img.thumbnail(output_size)
-                img.save(self.cover.path)
-
 
 class PackItem(BaseModel):
     name = models.CharField(max_length=255, unique=True)

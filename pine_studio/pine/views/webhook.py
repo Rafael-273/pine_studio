@@ -1,8 +1,11 @@
 import json
+import time
 import requests
 from django.http import JsonResponse
 from django.views import View
 from django.conf import settings
+import hashlib
+
 
 class MessengerWebhook(View):
     def get(self, request, *args, **kwargs):
@@ -21,6 +24,7 @@ class MessengerWebhook(View):
                 
                 if message_text:
                     self.process_message(sender_id, message_text)
+                    self.send_event_to_facebook(sender_id, message_text)
 
         return JsonResponse({'status': 'ok'})
 
@@ -38,3 +42,36 @@ class MessengerWebhook(View):
         
         response = requests.post(url, headers=headers, json=data)
         return response.json()
+
+    def send_event_to_facebook(self, sender_id, message_text):
+        hashed_email = hashlib.sha256(sender_id.encode('utf-8')).hexdigest()
+
+        event_data = {
+            "data": [
+                {
+                    "event_name": "Purchase",
+                    "event_time": int(time.time()),
+                    "action_source": "website",
+                    "user_data": {
+                        "em": [hashed_email],
+                    },
+                    "custom_data": {
+                        "currency": "USD",
+                        "value": 142.52
+                    },
+                    "original_event_data": {
+                        "event_name": "Purchase",
+                        "event_time": int(time.time())
+                    }
+                }
+            ]
+        }
+
+        url = f'https://graph.facebook.com/v13.0/{settings.FACEBOOK_PIXEL_ID}/events?access_token={settings.FACEBOOK_PAGE_ACCESS_TOKEN}'
+
+        response = requests.post(url, headers={'Content-Type': 'application/json'}, json=event_data)
+
+        if response.status_code == 200:
+            print("Evento enviado com sucesso!")
+        else:
+            print(f"Falha ao enviar evento: {response.status_code} - {response.text}")

@@ -36,6 +36,5 @@ class MessengerWebhook(View):
             'message': {'text': message_text}
         }
         
-        # Envia a requisição POST
         response = requests.post(url, headers=headers, json=data)
         return response.json()

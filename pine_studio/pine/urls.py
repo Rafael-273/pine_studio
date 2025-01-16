@@ -3,6 +3,7 @@ from .views.home import HomeView
 from .views.pack import PackListView, PackDetailView
 from .views.about import AboutPageView
 from .views.contact import ContactView
+from .views.webhook import MessengerWebhook
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
